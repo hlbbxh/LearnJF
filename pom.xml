@@ -19,16 +19,25 @@
 	</properties>
 
 	<dependencies>
+		<!-- web 模块 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- test模块 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<scope>test</scope><!-- maven周期 存在于 test -->
 		</dependency>
+		
+		<!-- 引入 freemarker 模板依赖   fm的依赖嗷嗷嗷-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
