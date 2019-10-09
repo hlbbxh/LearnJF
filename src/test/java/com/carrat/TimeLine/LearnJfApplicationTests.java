@@ -25,12 +25,12 @@ public class LearnJfApplicationTests {
 	}
 	
 	/*
-	 * 测试使用Constant类中的静态倡常用变量
+	 * 测试使用Constant类中的静态 常用变量
 	 */
 	@Test
 	public void testConstant() {
-		System.err.println(Constant.DATA_UPLOAD);
-		System.err.println(Constant.JPG_EXTENSION);
+		System.err.println(Constant.DATA_UPLOAD);//上传文件
+		System.err.println(Constant.JPG_EXTENSION);//jpg的后缀
 	}
 	
 	/**
@@ -38,12 +38,12 @@ public class LearnJfApplicationTests {
 	 */
 	@Test
 	public void testOption() {
-		StaffLevelSelect select = new StaffLevelSelect();
-		Map<String, String> options = select.options();
-		UserTypeSelect usertype = new UserTypeSelect();
-		Map<String, String> options2 = usertype.options();
-		System.err.println(options.toString());
-		System.err.println(options2.toString());
+		StaffLevelSelect select = new StaffLevelSelect();//职称下拉
+		Map<String, String> options = select.options();//cn
+		UserTypeSelect usertype = new UserTypeSelect();//用户下拉
+		Map<String, String> options2 = usertype.options();//en
+		System.err.println(options.toString());//输出
+		System.err.println(options2.toString());//输出
 	}
 	
 	
