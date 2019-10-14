@@ -20,3 +20,11 @@
 	ftl模板中的使用：
 	${springMacroRequestContext.getMessage("staff")}
 	
+	在springmvc中的application.xml中配置标签就可以了
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>package</value>
+			</list>
+		</property>
+	</bean>
