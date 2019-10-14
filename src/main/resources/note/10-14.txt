@@ -1,0 +1,22 @@
+1.------------------>>>>在ftl模板中获取属性资源文件对应的内容，这部分可以参照国际化来查看进行
+	配置文件：
+	spring.messages.basename: language_cn
+	# i18n/messages 这样的文件夹形式
+	spring.messages.basename.encoding: UTF-8
+	
+	配置类：
+	@Configuration
+	public class MessageSourceConfig {
+	
+	    @Bean(name = "messageSource")
+	    public ResourceBundleMessageSource getMessageSource() throws Exception {
+	        ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
+	        resourceBundleMessageSource.setDefaultEncoding("UTF-8");
+	        resourceBundleMessageSource.setBasenames("language_cn");
+	        return resourceBundleMessageSource;
+	    }
+	}
+	
+	ftl模板中的使用：
+	${springMacroRequestContext.getMessage("staff")}
+	

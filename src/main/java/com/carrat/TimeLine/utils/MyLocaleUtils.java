@@ -7,7 +7,7 @@ public class MyLocaleUtils {
 	
     private String c = "language";    //属性文件的名称
     private String country;    
-    private String launage;    //语言
+    private String launage = "cn";    //语言
     private Locale locale;    
     private ResourceBundle resourceBundle;
     
