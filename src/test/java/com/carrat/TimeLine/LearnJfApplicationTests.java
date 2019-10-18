@@ -4,17 +4,24 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.carrat.TimeLine.core.Constant;
+import com.carrat.TimeLine.entity.UserFile;
 import com.carrat.TimeLine.select.StaffLevelSelect;
 import com.carrat.TimeLine.select.UserTypeSelect;
+import com.carrat.TimeLine.utils.JsonUtils;
 import com.carrat.TimeLine.utils.PropertyUtil;
+import com.carrat.TimeLine.utils.RedisOperator;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LearnJfApplicationTests {
+	
+	@Autowired
+	private RedisOperator redisOperator;
 
 	/*
 	 * 测试读取属性文件
@@ -46,5 +53,20 @@ public class LearnJfApplicationTests {
 		System.err.println(options2.toString());//输出
 	}
 	
-	
+	/**
+	 * 测试redis数据库数据
+	 */
+	@Test
+	public void testRedis() {
+		redisOperator.set("test","hyd");//放入key value 数据
+		System.out.println(redisOperator.get("test"));
+		UserFile userFile = new UserFile();//实体
+		userFile.setId("1");
+		userFile.setFileName("测试文件");
+		userFile.setFileUrl("/images/360.png");
+		userFile.setCreateTime("2019年10月18日11:28:40");
+		redisOperator.set("File:UserFile",JsonUtils.objectToJson(userFile));//放入实体数据
+		System.out.println(redisOperator.get("File:UserFile"));//取出数据
+	}
+
 }
