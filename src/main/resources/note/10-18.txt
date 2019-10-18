@@ -1,0 +1,64 @@
+1.------------------>>>>springboot整合redis数据库
+	添加依赖 
+		<!-- redis的依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+	编写redis的操作类方便操作
+	/LearnJF/src/main/java/com/carrat/TimeLine/utils/RedisOperator.java
+	编写json数据格式的类
+	/LearnJF/src/main/java/com/carrat/TimeLine/utils/JsonUtils.java
+	进行测试
+	/**
+	 * 测试redis数据库数据
+	 */
+	@Test
+	public void testRedis() {
+		redisOperator.set("test","hyd");//放入key value 数据
+		System.out.println(redisOperator.get("test"));
+		UserFile userFile = new UserFile();//实体
+		userFile.setId("1");
+		userFile.setFileName("测试文件");
+		userFile.setFileUrl("/images/360.png");
+		userFile.setCreateTime("2019年10月18日11:28:40");
+		redisOperator.set("File:UserFile",JsonUtils.objectToJson(userFile));//放入实体数据
+		System.out.println(redisOperator.get("File:UserFile"));//取出数据
+	}
+1.------------------>>>>springboot整合mogodb数据库
+	maven依赖
+		<!-- mogodb 数据库 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		
+	配置文件
+	spring.data.mongodb.uri=mongodb://jiufangerp:4007755990@192.168.180.174:27017/jiufangerp
+	
+	查询方法，使用mongodbtemple查询，使用 CeshiRepository 查询
+	
+	CeshiRepository.class
+	@Service
+	public interface CeshiRepository extends MongoRepository<Ceshi, String>{
+		//注意是接口 不是class
+		public Ceshi findBytitle(String title); 
+		//注意 这里 有点像JPA的方式 findBy 后面是要 查询的字段 
+	}
+
+	/**
+	 * 测试芒果数据库简单操作
+	 */
+	@Test
+	public void testMogoDB() {
+		//1.使用mongotemplate查询
+		Query query = new Query();//查询
+		query.addCriteria(Criteria.where("title").is("MongoDB"));//组合条件
+		Ceshi mongoDB = mongotemplate.findOne(query, Ceshi.class);
+		System.err.println(mongoDB);
+		//2.使用SpringbootJPA进行查询
+		Ceshi redis = ceshiRepository.findBytitle("redis");
+		System.err.println(redis);
+	}
+	
+	
