@@ -1,0 +1,52 @@
+1.------------------>>>>使用反射的机制模拟定时任务来执行方法类似Quartz
+	定义反射请求方法的控制器
+	@RequestMapping("task")
+	@Controller
+	public class ScriptController {
+	    @Autowired
+	    private HttpServletRequest request; 
+	    
+	    @RequestMapping("runScript")
+	    @ResponseBody
+	    public String runScript() {
+	    	String type = this.request.getParameter("type");//参数为需要执行的包名称
+	        if (null == type) {
+	            System.out.println("请求包名为空");
+	            return "success";
+	        }
+	        String parms = this.request.getParameter("args");//获取参数
+	        type = type.replace("/", ".");//替换/为.的包名
+	        String packageName = "com.carrat.TimeLine." + type;//拼接完整包名
+	        String methodName = "sendEmail"; //方法名称
+	        try {
+	            Class<?> localClass = Class.forName(packageName);//反射
+	            Method localMethod = localClass.getMethod(methodName, new Class[] {String.class});//方法名称
+	            Boolean result = (Boolean) localMethod.invoke(localClass.newInstance(), new Object[] {parms});//参数
+	            if(result) {
+	            	return "success";
+	            }else {
+	            	return "fasle";
+	            }
+	        } catch (Exception localException) {
+	            localException.printStackTrace();
+	            return "fasle";
+	        }
+	    }
+	}
+	
+	定义反射控制器所要找到的类名和方法
+	public class SendEmailScript {
+		public Boolean sendEmail(String args) {
+			System.err.println("发送邮件成功，参数："+args);
+			return true;
+		}
+	}
+	
+	使用 linux 或者 windows 请求 控制器 找到反射的方法并且执行
+	注意参数：type 包名 加 类名
+			 args 参数 
+	curl "http://localhost:5000/task/runScript?type=script.SendEmailScript&args=123"
+	
+	
+	
+
