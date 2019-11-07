@@ -1,0 +1,12 @@
+1.java二维码的制作和解析
+	只用zxing第三方jar，谷歌的
+	
+	QRCode 的方式 没有maven、地址 
+	
+	使用js进行二维码生成
+	jquery.qrcode.min.js
+	
+	url跳转的话，需要http://这个头信息
+	$('#qrcode').qrcode({render:'canvas',text:"http://12306.com",width:260,height:260});	
+	
+	

@@ -114,3 +114,10 @@ function downPDF(){
         }
     });
 }
+
+//生成二维码
+function qrCodePro(){
+	var str = $("#inputString").val();
+	$("#imagesRerwei").find('canvas').remove();
+	jQuery("#imagesRerwei").qrcode(str);
+}

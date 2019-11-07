@@ -9,6 +9,7 @@
 <script type="text/javascript" src="/static/js/jsPdf.debug.js"></script><#-- 生成pdf的js -->
 <script type="text/javascript" src="/static/js/html2canvas.js"></script><#-- 生成pdf的js -->
 <script type="text/javascript" src="/static/js/index.js"></script><#-- 自定义脚本 -->
+<script type="text/javascript" src="/static/js/jquery.qrcode.min.js"></script><#-- 生成pdf的js -->
 <body>
 	<center>
 		<p>使用js生成条形码进行页面pdf下载</p>
@@ -22,6 +23,13 @@
 		<br/>
 		<input type="button" value="点击生成条形码" onclick="barCodeLine();" />
 		<input type="button" value="点击生成PDF页面" onclick="downPDF();" />
+		<hr>
+		<input type="input" id="inputString" />
+		<div id="imagesRerwei">
+			
+		</div>
+		<input type="button" value="点击生成输入框的二维码" onclick="qrCodePro();" />
 	</center>
+	
 </body>
 </html>
