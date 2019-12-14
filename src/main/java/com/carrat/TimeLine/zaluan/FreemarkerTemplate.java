@@ -22,7 +22,7 @@ public class FreemarkerTemplate {
     public FreemarkerTemplate(String charset) {
         this.charset = charset;
         configuration.setEncoding(Locale.CHINA, charset);
-        configuration.setClassicCompatible(true);//处理空值为空字符串  
+        configuration.setClassicCompatible(true);//处理空值为空字符串   pdf生成的demo
     }
 
     public void setTemplateClassPath(Class resourceLoaderClass,
