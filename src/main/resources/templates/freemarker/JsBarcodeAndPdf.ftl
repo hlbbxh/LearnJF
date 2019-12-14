@@ -9,7 +9,6 @@
 <script type="text/javascript" src="/static/js/jsPdf.debug.js"></script><#-- 生成pdf的js -->
 <script type="text/javascript" src="/static/js/html2canvas.js"></script><#-- 生成pdf的js -->
 <script type="text/javascript" src="/static/js/index.js"></script><#-- 自定义脚本 -->
-<script type="text/javascript" src="/static/js/jquery.qrcode.min.js"></script><#-- 生成pdf的js -->
 <body>
 	<center>
 		<p>使用js生成条形码进行页面pdf下载</p>

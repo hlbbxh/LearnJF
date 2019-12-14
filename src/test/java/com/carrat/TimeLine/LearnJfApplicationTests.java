@@ -1,6 +1,7 @@
 package com.carrat.TimeLine;
 
 import java.util.Map;
+import java.util.Vector;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -98,5 +99,20 @@ public class LearnJfApplicationTests {
 		//2.使用SpringbootJPA进行查询
 		Ceshi redis = ceshiRepository.findBytitle("redis");
 		System.err.println(redis);
+	}
+	
+	public static void main(String[] args) {
+		Vector<String> waybilllist = new Vector<String>();
+		for (int i = 0; i < 100; i++) {
+			waybilllist.add("wahah"+i);
+		}
+//		//实例化站台对象，并为每一个站台取名字
+//	    ManyThred station1=new ManyThred(waybilllist);
+//	    ManyThred station2=new ManyThred(waybilllist);
+//	    ManyThred station3=new ManyThred(waybilllist);
+//	    // 让每一个站台对象各自开始工作
+//	    station1.start();
+//	    station2.start();
+//	    station3.start();
 	}
 }
